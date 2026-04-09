@@ -1,0 +1,46 @@
+﻿@model COMP003B.Assignment3.Models.EventRegistration
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<partial name="_EventNav" />
+<h1>Event Registration</h1>
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class"mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EventCode" class="form-label"></label>
+        <input asp-for="EventCode" class="form-control" />
+        <span asp-validation-for="EventCode" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Tickets" class="form-label"></label>
+        <input asp-for="Tickets" class="form-control" />
+        <span asp-validation-for="Tickets" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ReferralCode" class="form-label"></label>
+        <input asp-for="ReferralCode" class="form-control" />
+        <span asp-validation-for="ReferralCode" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Registration</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

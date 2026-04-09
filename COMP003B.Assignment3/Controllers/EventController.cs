@@ -8,53 +8,43 @@ namespace COMP003B.Assignment3.Controllers
 		[HttpGet("event/register/{eventCode}")]
 		public IActionResult Register(string eventCode)
 		{
-			var model = new EventRegistration
+			var registration = new EventRegistration
 			{
 				EventCode = eventCode
 			};
 
-			return View(model);
+			return View(registration);
 		}
+
 		[HttpGet]
 		public IActionResult Register()
 		{
 			return View(new EventRegistration());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Register(EventRegistration registration)
+		public IActionResult Register([FromForm] EventRegistration registration)
 		{
 			if (!ModelState.IsValid)
 			{
 				return View(registration);
 			}
-			TempData["FullName"] = registration.FullName;
-			TempData["Email"] = registration.Email;
-			TempData["EventCode"] = registration.EventCode;
-			TempData["Tickets"] = registration.Tickets?.ToString();
-			TempData["ReferralCode"] = registration.ReferralCode ?? string.Empty;
 
-			return RedirectToAction("Success");
+			return RedirectToAction("Success", new
+			{
+				registration.FullName,
+				registration.Email,
+				registration.EventCode,
+				registration.Tickets,
+				registration.ReferralCode
+			});
 		}
+
 		[HttpGet]
-		public IActionResult Success()
+		public IActionResult Success(EventRegistration registration)
 		{
-			int? tickets = null;
-			if (int.TryParse(TempData.Peek("Tickets")?.ToString(), out int parsedTickets))
-			{
-				tickets = parsedTickets;
-			}
-
-			var model = new EventRegistration
-			{
-				FullName = TempData.Peek("FullName")?.ToString() ?? string.Empty,
-				Email = TempData.Peek("Email")?.ToString() ?? string.Empty,
-				EventCode = TempData.Peek("EventCode")?.ToString() ?? string.Empty,
-				Tickets = tickets,
-				ReferralCode = TempData.Peek("ReferralCode")?.ToString()
-			};
-
-			return View(model);
+			return View(registration);
 		}
 	}
 }
