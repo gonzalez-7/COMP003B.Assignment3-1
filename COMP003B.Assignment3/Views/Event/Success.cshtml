@@ -1,0 +1,24 @@
+﻿@model COMP003B.Assignment3.Models.EventRegistration
+
+@{
+    ViewData["Title"] = "Event - Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<partial name="_EventNav" />
+
+<h2>Registration Successful</h2>
+
+<p><strong>Full Name:</strong> @Model.FullName</p>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Event Code:</strong> @Model.EventCode</p>
+<p><strong>Tickets:</strong> @Model.Tickets</p>
+
+@if (!string.IsNullOrWhiteSpace(Model.ReferralCode))
+{
+    <p><strong>Referral Code:</strong> @Model.ReferralCode</p>
+}
+else
+{
+    <p><strong>Referral Code:</strong> None</p>
+}
