@@ -1,3 +1,10 @@
+/*
+ Name: Antonio Gonzalez 
+ Course Name: COMP-003B: ASP.NET Core
+ Faculty Name: Jonathan Cruz
+ Purpose: This application allows users to register for an event,
+ validates the form input, and displays the information after submission.
+ */
 namespace COMP003B.Assignment3
 {
 	public class Program
